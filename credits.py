@@ -7,8 +7,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('goal', type=int)
     parser.add_argument('base', type=int, default=0)
-    parser.add_argument('-c', '--credits', type=int, nargs='+')
+    parser.add_argument('-c', '--credits', type=int, nargs='+', required=True)
     args = parser.parse_args()
+
+    assert base < goal
+    assert base >= 0 and goal > 0
 
     for r in range(1, len(args.credits) + 1):
         for c in combinations(args.credits, r):
