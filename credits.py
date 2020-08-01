@@ -10,10 +10,11 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--credits', type=int, nargs='+', required=True)
     args = parser.parse_args()
 
-    assert base < goal
-    assert base >= 0 and goal > 0
+    assert args.base < args.goal
+    assert args.base >= 0 and args.goal > 0
 
     for r in range(1, len(args.credits) + 1):
         for c in combinations(args.credits, r):
-            if args.base + sum(c) >= args.goal:
-                print(*c)
+            obtained = args.base + sum(c)
+            if obtained >= args.goal:
+                print(*c, obtained)
