@@ -22,9 +22,9 @@ if __name__ == '__main__':
     marks = [string_to_float(m) for m in args.marks]
     weights = [string_to_float(w) for w in args.weights]
     target = string_to_float(args.target)
-    assert all([0 <= x <= 1] for x in marks + weights + [target])
+    assert all(0 <= x <= 1 for x in marks + weights + [target])
 
-    points = sum([mark * weight for mark, weight in zip(marks, weights)])
+    points = sum(mark * weight for mark, weight in zip(marks, weights))
     assert 0 <= points < 1
     final_weight = 1 - sum(weights)
     final_score = abs(target - points) / final_weight
