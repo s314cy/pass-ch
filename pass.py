@@ -3,13 +3,12 @@ import math
 
 
 def string_to_float(quotient):
-    if quotient.count('/') > 1:
-        raise ValueError
-    terms = quotient.split('/')
-    if len(terms) == 1:
-        return float(terms[0])
-    return float(terms[0]) / float(terms[1])
-
+    terms = [float(x) for x in quotient.split('/')]
+    r = terms[0]
+    for i in range(quotient.count('/')):
+        r /= terms[i + 1]
+    return r
+    
 
 if __name__ == '__main__':
 
@@ -29,7 +28,7 @@ if __name__ == '__main__':
     assert 0 <= points < 1
     final_weight = 1 - sum(weights)
     final_score = abs(target - points) / final_weight
-    
+
     display_score = math.ceil(final_score * 1000) / 10
     display_target = target * 5 + 1
     print(f'Need to score {display_score:.1f}/100 points on final to reach {display_target:.3f}')
